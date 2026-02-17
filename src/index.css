@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "General-Sans-Regular";
+  src: url("/font/GeneralSans-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "General-Sans-Medium";
+  src: url("/font/GeneralSans-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background-300: #515158;
+  --background-400: #454551;
+  --background-500: #353546;
+  --background-600: #28283e;
+  --background-700: #1a1a2e;
+
+  --text-body: #cdcdcd;
+  --text-title: #ffffff;
+}
+
+@theme {
+  /* Font */
+  --font-primary-regular: "General-Sans-Regular";
+  --font-primary-medium: "General-Sans-Medium";
+
+  /* Background Color */
+  --color-background-300: var(--background-300);
+  --color-background-400: var(--background-400);
+  --color-background-500: var(--background-500);
+  --color-background-600: var(--background-600);
+  --color-background-700: var(--background-700);
+
+  /* Text Color */
+  --color-body: var(--text-body);
+  --color-title: var(--text-title);
+
+  /* Status Color */
+  --color-open: #60c9fc;
+  --color-in-progress: #fc8360;
+  --color-done: #94f590;
+  --color-validation: #fa6565;
+
+  /* Primary Color */
+  --color-primary: #9654ff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-300: #f9f9fa;
+    --background-400: #eeeef1;
+    --background-500: #dddde3;
+    --background-600: #ccccd6;
+    --background-700: #b5b5c4;
+
+    --text-body: #333333;
+    --text-title: #000000;
+  }
+}
+
+@layer components {
+  .font-body-sm {
+    @apply font-primary-regular text-sm/5;
+  }
+  .font-body-base {
+    @apply font-primary-regular text-base/6;
+  }
+  .font-body-xl {
+    @apply font-primary-regular text-xl/7;
+  }
+  .font-title-sm {
+    @apply font-primary-medium text-[2rem]/7;
+  }
+  .font-button {
+    @apply font-primary-medium text-base/6;
+  }
+}
