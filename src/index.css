@@ -52,33 +52,45 @@
   --color-primary: #9654ff;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background-300: #f9f9fa;
-    --background-400: #eeeef1;
-    --background-500: #dddde3;
-    --background-600: #ccccd6;
-    --background-700: #b5b5c4;
+:root.light {
+  --background-300: #f9f9fa;
+  --background-400: #eeeef1;
+  --background-500: #dddde3;
+  --background-600: #ccccd6;
+  --background-700: #b5b5c4;
 
-    --text-body: #333333;
-    --text-title: #000000;
-  }
+  --text-body: #333333;
+  --text-title: #000000;
 }
 
-@layer components {
-  .font-body-sm {
-    @apply font-primary-regular text-sm/5;
+/* Font Utilities */
+@utility font-body-sm {
+  @apply font-primary-regular text-sm/5;
+}
+@utility font-body-base {
+  @apply font-primary-regular text-base/6;
+}
+@utility font-body-xl {
+  @apply font-primary-regular text-xl/7;
+}
+@utility font-title-sm {
+  @apply font-primary-medium text-[2rem]/7;
+}
+@utility font-button {
+  @apply font-primary-medium text-base/6;
+}
+
+/* Border Radius Utility */
+@utility rounded-default {
+  @apply rounded-xl;
+}
+
+/* Global Settings */
+@layer base {
+  html {
+    @apply bg-background-500 transition-colors duration-500;
   }
-  .font-body-base {
-    @apply font-primary-regular text-base/6;
-  }
-  .font-body-xl {
-    @apply font-primary-regular text-xl/7;
-  }
-  .font-title-sm {
-    @apply font-primary-medium text-[2rem]/7;
-  }
-  .font-button {
-    @apply font-primary-medium text-base/6;
+  body {
+    @apply max-w-360 p-4;
   }
 }
