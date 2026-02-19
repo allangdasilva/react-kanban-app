@@ -2,50 +2,22 @@ import React from "react";
 import Task from "./Task";
 import NoTask from "./NoTask";
 import TaskSkeleton from "./TaskSkeleton";
+import type { TaskStatus } from "../../interfaces/tasks.interface";
+import { useBoundStore } from "../../store/bound.stores";
+import { useShallow } from "zustand/shallow";
 
 interface TasksCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  status: "open" | "in-progress" | "done";
+  status: TaskStatus;
 }
-interface Task {
-  id: number;
-  title: string;
-  desc: string;
-  status: "open" | "in-progress" | "done";
-}
-
-const tasks = [
-  {
-    id: 1,
-    title: "Estudar Node.js",
-    desc: "Praticar req e res",
-    status: "open",
-  },
-  {
-    id: 2,
-    title: "Estudar HTML",
-    desc: "Praticar semântica",
-    status: "done",
-  },
-  {
-    id: 3,
-    title: "Estudar JS",
-    desc: "Praticar classes",
-    status: "open",
-  },
-  {
-    id: 4,
-    title: "Estudar CSS",
-    desc: "Praticar animações",
-    status: "open",
-  },
-];
 
 const TasksCard = ({ status, ...props }: TasksCardProps) => {
   const [dragOver, setDragOver] = React.useState(false);
 
-  const filteredTasks = tasks.filter(
-    (task) => task.status === status,
-  ) as Task[];
+  const { tasks } = useBoundStore(
+    useShallow((state) => ({ tasks: state.tasks })),
+  );
+
+  const filteredTasks = tasks.filter((task) => task.status === status);
 
   return (
     <div
@@ -55,10 +27,10 @@ const TasksCard = ({ status, ...props }: TasksCardProps) => {
       {...props}
     >
       {!filteredTasks.length && <NoTask />}
-      {filteredTasks.map((task) => (
-        <Task key={task.id} task={task} />
+      {filteredTasks.map((filteredTask) => (
+        <Task key={filteredTask.id} task={filteredTask} />
       ))}
-      {dragOver && <TaskSkeleton color={status} />}
+      {dragOver && <TaskSkeleton status={status} />}
     </div>
   );
 };

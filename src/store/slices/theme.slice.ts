@@ -1,9 +1,10 @@
 import type { StateCreator } from "zustand";
 import type { ThemeSlice } from "../../interfaces/theme.interface";
+import type { TasksSlice } from "../../interfaces/tasks.interface";
 
 export const createTheme: StateCreator<
-  ThemeSlice,
-  [["zustand/devtools", never]],
+  ThemeSlice & TasksSlice,
+  [["zustand/devtools", never], ["zustand/persist", unknown]],
   [],
   ThemeSlice
 > = (set) => ({

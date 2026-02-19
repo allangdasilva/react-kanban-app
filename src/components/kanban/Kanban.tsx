@@ -9,15 +9,15 @@ const Kanban = () => {
     <section className="py-8">
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <div className={clsx(flexCol, "mb-16 lg:mb-0")}>
-          <StatusBar title="Fazer" color="color-open" />
-          <TasksCard status="open" />
+          <StatusBar title="Fazer" status="to-do" />
+          <TasksCard status="to-do" />
         </div>
         <div className={clsx(flexCol, "mb-16 sm:mb-0")}>
-          <StatusBar title="Fazendo" color="color-in-progress" />
-          <TasksCard status="in-progress" />
+          <StatusBar title="Fazendo" status="doing" />
+          <TasksCard status="doing" />
         </div>
         <div className={clsx(flexCol)}>
-          <StatusBar title="Feito" color="color-done" />
+          <StatusBar title="Feito" status="done" />
           <TasksCard status="done" />
         </div>
       </div>

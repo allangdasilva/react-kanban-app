@@ -2,28 +2,33 @@ import React from "react";
 import TrashIcon from "../../icons/TrashIcon";
 import Divider from "../divider/Divider";
 import clsx from "clsx";
+import { useBoundStore } from "../../store/bound.stores";
+import { useShallow } from "zustand/shallow";
+import type { ITask } from "../../interfaces/tasks.interface";
 
 interface TaskProps extends React.HTMLAttributes<HTMLDivElement> {
-  task: {
-    id: number;
-    title: string;
-    desc: string;
-    status: "open" | "in-progress" | "done";
-  };
+  task: ITask;
 }
 
 const Task = ({ task }: TaskProps) => {
-  const [dragStart, setDragStart] = React.useState(false);
+  const { draggingTaskId, setDraggingTaskId, removeDraggingTaskId } =
+    useBoundStore(
+      useShallow((state) => ({
+        draggingTaskId: state.draggingTaskId,
+        setDraggingTaskId: state.setDraggingTaskId,
+        removeDraggingTaskId: state.removeDraggingTaskId,
+      })),
+    );
 
   return (
     <div className="relative">
       <div
         draggable
-        onDragStart={() => setDragStart(true)}
-        onDragEnd={() => setDragStart(false)}
+        onDragStart={() => setDraggingTaskId(task.id)}
+        onDragEnd={() => removeDraggingTaskId()}
         className={clsx(
           "relative flex flex-col gap-2 p-4 rounded-default cursor-grab bg-background-400 z-10 origin-top-left transition-transform",
-          { "rotate-z-4": dragStart },
+          { "rotate-z-4": draggingTaskId },
         )}
       >
         <span className="font-body-xl text-title">{task.title}</span>
@@ -36,10 +41,12 @@ const Task = ({ task }: TaskProps) => {
       <div
         className={clsx(
           "absolute inset-0 rounded-default border-2 border-dashed opacity-0 z-0",
-          { "border-open": task.status === "open" },
-          { "border-in-progress": task.status === "in-progress" },
-          { "border-done": task.status === "done" },
-          { "opacity-100": dragStart },
+          {
+            "border-to-do": task.status === "to-do",
+            "border-doing": task.status === "doing",
+            "border-done": task.status === "done",
+          },
+          { "opacity-100": draggingTaskId },
         )}
       ></div>
     </div>

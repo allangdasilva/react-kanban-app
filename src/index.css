@@ -25,8 +25,8 @@
   --text-body: #cdcdcd;
   --text-title: #ffffff;
 
-  --color-open: #60c9fc;
-  --color-in-progress: #fc8360;
+  --color-to-do: #60c9fc;
+  --color-doing: #fc8360;
   --color-done: #94f590;
 }
 
@@ -47,8 +47,8 @@
   --color-title: var(--text-title);
 
   /* Status Color */
-  --color-open: #60c9fc;
-  --color-in-progress: #fc8360;
+  --color-to-do: #60c9fc;
+  --color-doing: #fc8360;
   --color-done: #94f590;
   --color-validation: #fa6565;
 
