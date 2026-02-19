@@ -23,7 +23,7 @@ const Task = ({ task }: TaskProps) => {
         onDragEnd={() => setDragStart(false)}
         className={clsx(
           "relative flex flex-col gap-2 p-4 rounded-default cursor-grab bg-background-400 z-10 origin-top-left transition-transform",
-          { "rotate-z-5": dragStart },
+          { "rotate-z-4": dragStart },
         )}
       >
         <span className="font-body-xl text-title">{task.title}</span>

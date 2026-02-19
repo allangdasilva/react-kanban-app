@@ -1,6 +1,7 @@
 import React from "react";
 import Task from "./Task";
 import NoTask from "./NoTask";
+import TaskSkeleton from "./TaskSkeleton";
 
 interface TasksCardProps extends React.HTMLAttributes<HTMLDivElement> {
   status: "open" | "in-progress" | "done";
@@ -40,16 +41,24 @@ const tasks = [
 ];
 
 const TasksCard = ({ status, ...props }: TasksCardProps) => {
+  const [dragOver, setDragOver] = React.useState(false);
+
   const filteredTasks = tasks.filter(
     (task) => task.status === status,
   ) as Task[];
 
   return (
-    <div className="space-y-4" {...props}>
+    <div
+      onDragOver={() => setDragOver(true)}
+      onDragLeave={() => setDragOver(false)}
+      className="h-full flex flex-col gap-4"
+      {...props}
+    >
       {!filteredTasks.length && <NoTask />}
       {filteredTasks.map((task) => (
         <Task key={task.id} task={task} />
       ))}
+      {dragOver && <TaskSkeleton color={status} />}
     </div>
   );
 };
