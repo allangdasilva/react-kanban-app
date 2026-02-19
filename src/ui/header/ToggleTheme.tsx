@@ -1,23 +1,20 @@
-import React from "react";
 import MoonIcon from "../../icons/MoonIcon";
 import SunIcon from "../../icons/SunIcon";
 import clsx from "clsx";
+import { useBoundStore } from "../../store/bound.stores";
+import { useShallow } from "zustand/shallow";
 
 const ToggleTheme = () => {
-  const [isLight, setIsLight] = React.useState(false);
-
-  React.useEffect(() => {
-    const root = window.document.documentElement;
-    if (isLight) {
-      root.classList.add("light");
-    } else {
-      root.classList.remove("light");
-    }
-  }, [isLight]);
+  const { isLight, toggleTheme } = useBoundStore(
+    useShallow((state) => ({
+      isLight: state.isLight,
+      toggleTheme: state.toggleTheme,
+    })),
+  );
 
   return (
     <button
-      onClick={() => setIsLight(!isLight)}
+      onClick={toggleTheme}
       type="button"
       className="w-full cursor-pointer"
       aria-label="Alterar tema"

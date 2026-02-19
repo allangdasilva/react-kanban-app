@@ -92,7 +92,7 @@
 /* Global Settings */
 @layer base {
   html {
-    @apply bg-background-500 transition-colors duration-500;
+    @apply bg-background-500;
   }
   body {
     @apply max-w-360 px-4;
