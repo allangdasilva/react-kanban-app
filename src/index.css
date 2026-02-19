@@ -24,6 +24,10 @@
 
   --text-body: #cdcdcd;
   --text-title: #ffffff;
+
+  --color-open: #60c9fc;
+  --color-in-progress: #fc8360;
+  --color-done: #94f590;
 }
 
 @theme {
