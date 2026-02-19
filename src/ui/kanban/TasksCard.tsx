@@ -1,7 +1,14 @@
 import React from "react";
 import Task from "./Task";
+import NoTask from "./NoTask";
 
 interface TasksCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  status: "open" | "in-progress" | "done";
+}
+interface Task {
+  id: number;
+  title: string;
+  desc: string;
   status: "open" | "in-progress" | "done";
 }
 
@@ -28,15 +35,18 @@ const tasks = [
     id: 4,
     title: "Estudar CSS",
     desc: "Praticar animações",
-    status: "in-progress",
+    status: "open",
   },
 ];
 
 const TasksCard = ({ status, ...props }: TasksCardProps) => {
-  const filteredTasks = tasks.filter((task) => task.status === status);
+  const filteredTasks = tasks.filter(
+    (task) => task.status === status,
+  ) as Task[];
 
   return (
     <div className="space-y-4" {...props}>
+      {!filteredTasks.length && <NoTask />}
       {filteredTasks.map((task) => (
         <Task key={task.id} task={task} />
       ))}
