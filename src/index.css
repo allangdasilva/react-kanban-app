@@ -75,7 +75,7 @@
   @apply font-primary-regular text-base/6;
 }
 @utility font-body-xl {
-  @apply font-primary-regular text-xl/7;
+  @apply font-primary-medium text-xl/7;
 }
 @utility font-title-sm {
   @apply font-primary-medium text-[2rem]/7;

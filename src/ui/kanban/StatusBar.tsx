@@ -11,7 +11,7 @@ const StatusBar = ({ title, color, ...props }: StatusBarProps) => {
     <button
       type="button"
       aria-label="Adicionar tarefa a fazer"
-      className="flex items-center justify-between p-4 rounded-default cursor-pointer bg-background-400"
+      className="w-full flex items-center justify-between p-4 rounded-default cursor-pointer bg-background-400"
       {...props}
     >
       <div className="flex items-center gap-2">
