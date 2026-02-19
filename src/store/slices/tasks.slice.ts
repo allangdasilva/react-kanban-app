@@ -7,7 +7,7 @@ export const createTasks: StateCreator<
   [["zustand/devtools", never], ["zustand/persist", unknown]],
   [],
   TasksSlice
-> = (set) => ({
+> = (set, get) => ({
   tasks: [
     {
       id: "1",
@@ -22,4 +22,19 @@ export const createTasks: StateCreator<
     set({ draggingTaskId: taskId }, false, "setDraggingTaskId"),
   removeDraggingTaskId: () =>
     set({ draggingTaskId: undefined }, false, "removeDraggingTaskId"),
+
+  changeTaskStatus: (taskId, status) => {
+    set((state) => ({
+      tasks: state.tasks.map((task) =>
+        task.id === taskId ? { ...task, status } : task,
+      ),
+    }));
+  },
+  onTaskDrop: (status) => {
+    const taskId = get().draggingTaskId;
+    if (!taskId) return;
+
+    get().changeTaskStatus(taskId, status);
+    get().removeDraggingTaskId();
+  },
 });

@@ -13,16 +13,31 @@ interface TasksCardProps extends React.HTMLAttributes<HTMLDivElement> {
 const TasksCard = ({ status, ...props }: TasksCardProps) => {
   const [dragOver, setDragOver] = React.useState(false);
 
-  const { tasks } = useBoundStore(
-    useShallow((state) => ({ tasks: state.tasks })),
+  const { tasks, onTaskDrop } = useBoundStore(
+    useShallow((state) => ({
+      tasks: state.tasks,
+      onTaskDrop: state.onTaskDrop,
+    })),
   );
+
+  const handleDragOver = (event: React.DragEvent) => {
+    event.preventDefault();
+  };
+  const handleDragLeave = (event: React.DragEvent) => {
+    event.preventDefault();
+  };
+  const handleOnDrop = (event: React.DragEvent) => {
+    event.preventDefault();
+    onTaskDrop(status);
+  };
 
   const filteredTasks = tasks.filter((task) => task.status === status);
 
   return (
     <div
-      onDragOver={() => setDragOver(true)}
-      onDragLeave={() => setDragOver(false)}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleOnDrop}
       className="h-full flex flex-col gap-4"
       {...props}
     >
