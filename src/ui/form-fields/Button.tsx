@@ -9,6 +9,7 @@ const Button = ({ children, type, ...props }: ButtonProps) => {
   return (
     <button
       type={type}
+      {...props}
       className={clsx(
         "py-4 px-8 font-button uppercase rounded-default cursor-pointer hover:outline-2  hover:ring-4 focus:outline-2  focus:ring-4",
         {

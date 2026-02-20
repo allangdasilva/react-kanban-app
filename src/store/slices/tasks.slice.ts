@@ -1,9 +1,10 @@
 import type { StateCreator } from "zustand";
 import type { TasksSlice } from "../../interfaces/tasks.interface";
 import type { ThemeSlice } from "../../interfaces/theme.interface";
+import type { ModalSlice } from "../../interfaces/modal.interface";
 
 export const createTasks: StateCreator<
-  TasksSlice & ThemeSlice,
+  TasksSlice & ThemeSlice & ModalSlice,
   [["zustand/devtools", never], ["zustand/persist", unknown]],
   [],
   TasksSlice
