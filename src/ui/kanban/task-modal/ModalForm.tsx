@@ -5,9 +5,6 @@ import Button from "../../form-fields/Button";
 
 const flexCol = "flex flex-col";
 
-const buttonFocus =
-  "hover:outline-2 hover:outline-primary hover:ring-4 hover:ring-background-700 focus:outline-2 focus:outline-primary focus:ring-4 focus:ring-background-700";
-
 const ModalForm = () => {
   return (
     <form
@@ -40,10 +37,7 @@ const ModalForm = () => {
       </span>
 
       <div className="flex justify-end gap-2">
-        <Button
-          type="submit"
-          className={clsx("text-primary bg-background-700", buttonFocus)}
-        >
+        <Button type="submit" className="text-primary bg-background-700">
           Criar
         </Button>
         <Button type="button" className="text-body bg-background-500">
