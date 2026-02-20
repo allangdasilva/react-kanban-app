@@ -1,8 +1,12 @@
 import Label from "../../form-fields/Label";
 import Input from "../../form-fields/Input";
 import clsx from "clsx";
+import Button from "../../form-fields/Button";
 
 const flexCol = "flex flex-col";
+
+const buttonFocus =
+  "hover:outline-2 hover:outline-primary hover:ring-4 hover:ring-background-700 focus:outline-2 focus:outline-primary focus:ring-4 focus:ring-background-700";
 
 const ModalForm = () => {
   return (
@@ -34,6 +38,18 @@ const ModalForm = () => {
       <span className="font-body-sm text-body mt-6 mb-8">
         * Indica campo obrigatório
       </span>
+
+      <div className="flex justify-end gap-2">
+        <Button
+          type="submit"
+          className={clsx("text-primary bg-background-700", buttonFocus)}
+        >
+          Criar
+        </Button>
+        <Button type="button" className="text-body bg-background-500">
+          Cancelar
+        </Button>
+      </div>
     </form>
   );
 };
