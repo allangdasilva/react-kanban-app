@@ -12,7 +12,7 @@ export const useBoundStore = create<ThemeSlice & TasksSlice>()(
         ...createTheme(...a),
         ...createTasks(...a),
       }),
-      { name: "theme-storage" },
+      { name: "kanban-storage" },
     ),
   ),
 );

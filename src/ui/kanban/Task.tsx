@@ -11,12 +11,13 @@ interface TaskProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const Task = ({ task }: TaskProps) => {
-  const { draggingTaskId, setDraggingTaskId, removeDraggingTaskId } =
+  const { draggingTask, setDraggingTask, removeDraggingTask, removeTask } =
     useBoundStore(
       useShallow((state) => ({
-        draggingTaskId: state.draggingTaskId,
-        setDraggingTaskId: state.setDraggingTaskId,
-        removeDraggingTaskId: state.removeDraggingTaskId,
+        draggingTask: state.draggingTask,
+        setDraggingTask: state.setDraggingTask,
+        removeDraggingTask: state.removeDraggingTask,
+        removeTask: state.removeTask,
       })),
     );
 
@@ -24,17 +25,21 @@ const Task = ({ task }: TaskProps) => {
     <div className="relative">
       <div
         draggable
-        onDragStart={() => setDraggingTaskId(task.id)}
-        onDragEnd={() => removeDraggingTaskId()}
+        onDragStart={() => setDraggingTask(task)}
+        onDragEnd={() => removeDraggingTask()}
         className={clsx(
           "relative flex flex-col gap-2 p-4 rounded-default cursor-grab bg-background-400 z-10 origin-top-left transition-transform",
-          { "rotate-z-4": draggingTaskId },
+          { "rotate-z-4": draggingTask },
         )}
       >
         <span className="font-body-xl text-title">{task.title}</span>
         <span className="font-body-base text-body">{task.desc}</span>
         <Divider bg="bg-background-300" />
-        <button type="button" className="self-end pl-2 cursor-pointer z-20">
+        <button
+          onClick={() => removeTask(task.id)}
+          type="button"
+          className="self-end pl-2 cursor-pointer z-20"
+        >
           <TrashIcon />
         </button>
       </div>
@@ -46,7 +51,7 @@ const Task = ({ task }: TaskProps) => {
             "border-doing": task.status === "doing",
             "border-done": task.status === "done",
           },
-          { "opacity-100": draggingTaskId },
+          { "opacity-100": draggingTask },
         )}
       ></div>
     </div>

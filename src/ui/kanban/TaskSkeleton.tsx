@@ -6,7 +6,7 @@ interface TaskSkeletonProps {
 }
 
 const bgLinear =
-  "rounded-lg bg-linear-to-r from-background-400 via-background-300 to-background-400";
+  "rounded-lg bg-linear-to-r from-background-400 via-background-300 to-background-400 animate-pulse";
 
 const TaskSkeleton = ({ status, ...props }: TaskSkeletonProps) => {
   return (

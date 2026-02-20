@@ -1,9 +1,11 @@
 export interface TasksSlice {
   tasks: ITask[];
-  draggingTaskId?: string;
+  draggingTask?: ITask;
 
-  setDraggingTaskId: (taskId: string) => void;
-  removeDraggingTaskId: () => void;
+  removeTask: (taskId: string) => void;
+
+  setDraggingTask: (task: ITask) => void;
+  removeDraggingTask: () => void;
 
   changeTaskStatus: (taskId: string, status: TaskStatus) => void;
   onTaskDrop: (status: TaskStatus) => void;
