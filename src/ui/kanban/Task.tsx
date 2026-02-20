@@ -29,7 +29,7 @@ const Task = ({ task }: TaskProps) => {
         onDragEnd={() => removeDraggingTask()}
         className={clsx(
           "relative flex flex-col gap-2 p-4 rounded-default cursor-grab bg-background-400 z-10 origin-top-left transition-transform",
-          { "rotate-z-4": draggingTask },
+          { "rotate-z-4": draggingTask === task },
         )}
       >
         <span className="font-body-xl text-title">{task.title}</span>
@@ -51,7 +51,7 @@ const Task = ({ task }: TaskProps) => {
             "border-doing": task.status === "doing",
             "border-done": task.status === "done",
           },
-          { "opacity-100": draggingTask },
+          { "opacity-100": draggingTask === task },
         )}
       ></div>
     </div>
