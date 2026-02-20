@@ -16,11 +16,16 @@ const ModalForm = () => {
       <div className={clsx(flexCol, "gap-4")}>
         <div className={clsx(flexCol, "gap-2")}>
           <Label htmlFor="task-title">Título*</Label>
-          <Input id="task-title" placeholder="Digite o título da tarefa " />
+          <Input
+            type="text"
+            id="task-title"
+            placeholder="Digite o título da tarefa "
+          />
         </div>
         <div className={clsx(flexCol, "gap-2")}>
           <Label htmlFor="task-desc">Descrição</Label>
           <Input
+            type="text"
             id="task-desc"
             placeholder="Digite uma descrição para a tarefa"
           />
