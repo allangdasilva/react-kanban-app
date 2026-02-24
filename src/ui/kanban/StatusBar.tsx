@@ -18,7 +18,7 @@ const StatusBar = ({ title, status, ...props }: StatusBarProps) => {
 
   return (
     <button
-      onClick={openModal}
+      onClick={() => openModal(status)}
       type="button"
       aria-label={`Adicionar tarefa em: ${title}`}
       className="w-full flex items-center justify-between p-4 rounded-default cursor-pointer bg-background-400"

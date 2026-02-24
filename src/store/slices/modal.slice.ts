@@ -10,6 +10,9 @@ export const createModal: StateCreator<
   ModalSlice
 > = (set) => ({
   isModalOpen: false,
-  openModal: () => set({ isModalOpen: true }, false, "openModal"),
-  closeModal: () => set({ isModalOpen: false }, false, "closeModal"),
+  modalStatus: undefined,
+  openModal: (status) =>
+    set({ isModalOpen: true, modalStatus: status }, false, "openModal"),
+  closeModal: () =>
+    set({ isModalOpen: false, modalStatus: undefined }, false, "closeModal"),
 });

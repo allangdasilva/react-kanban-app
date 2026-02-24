@@ -36,9 +36,8 @@ const useFocusTrap = <T extends HTMLElement>(
     }
 
     const handleEscapeKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        closeModal();
-      }
+      if (event.key !== "Escape") return;
+      closeModal();
     };
 
     elementRef.current.addEventListener("keydown", handleKeyDown);

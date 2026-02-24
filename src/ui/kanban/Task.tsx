@@ -33,7 +33,10 @@ const Task = ({ task }: TaskProps) => {
         )}
       >
         <span className="font-body-xl text-title">{task.title}</span>
-        <span className="font-body-base text-body">{task.desc}</span>
+        {task.desc && (
+          <span className="font-body-base text-body">{task.desc}</span>
+        )}
+
         <Divider bg="bg-background-300" />
         <button
           onClick={() => removeTask(task.id)}

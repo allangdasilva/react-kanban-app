@@ -31,14 +31,17 @@ const ModalForm = () => {
 
   const formRef = React.useRef<HTMLFormElement>(null);
 
-  const { closeModal, isModalOpen } = useBoundStore(
+  const { isModalOpen, modalStatus, newTask, closeModal } = useBoundStore(
     useShallow((state) => ({
       isModalOpen: state.isModalOpen,
+      modalStatus: state.modalStatus,
+      newTask: state.newTask,
       closeModal: state.closeModal,
     })),
   );
 
-  function createTask(data: TaskData) {
+  function createTask({ task_title, task_desc }: TaskData) {
+    if (modalStatus) newTask(task_title, task_desc, modalStatus);
     closeModal();
   }
 
@@ -49,7 +52,10 @@ const ModalForm = () => {
       onSubmit={handleSubmit(createTask)}
       ref={formRef}
       id="create-task-modal"
-      className={clsx("w-full p-4 rounded-default bg-background-600", flexCol)}
+      className={clsx(
+        "w-full p-4 rounded-default shadow-background-700 shadow-xl bg-background-600",
+        flexCol,
+      )}
     >
       <h2 className="font-title-sm text-title mb-8">Nova Tarefa</h2>
       <div className={clsx(flexCol, "gap-4")}>

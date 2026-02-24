@@ -2,6 +2,7 @@ import type { StateCreator } from "zustand";
 import type { TasksSlice } from "../../interfaces/tasks.interface";
 import type { ThemeSlice } from "../../interfaces/theme.interface";
 import type { ModalSlice } from "../../interfaces/modal.interface";
+import { v7 as uuidv7 } from "uuid";
 
 export const createTasks: StateCreator<
   TasksSlice & ThemeSlice & ModalSlice,
@@ -9,26 +10,7 @@ export const createTasks: StateCreator<
   [],
   TasksSlice
 > = (set, get) => ({
-  tasks: [
-    {
-      id: "1",
-      title: "Estudar HTML",
-      desc: "Praticar Semântica",
-      status: "to-do",
-    },
-    {
-      id: "2",
-      title: "Estudar JS",
-      desc: "Praticar Classes",
-      status: "to-do",
-    },
-    {
-      id: "3",
-      title: "Estudar Node.js",
-      desc: "Praticar req e res",
-      status: "to-do",
-    },
-  ],
+  tasks: [],
 
   draggingTask: undefined,
 
@@ -39,6 +21,23 @@ export const createTasks: StateCreator<
       }),
       false,
       "removeTask",
+    );
+  },
+
+  newTask: (taskTitle, taskDesc, taskStatus) => {
+    const uuid = uuidv7();
+    const newTask = {
+      id: uuid,
+      title: taskTitle,
+      desc: taskDesc,
+      status: taskStatus,
+    };
+    set(
+      (state) => ({
+        tasks: [...state.tasks, newTask],
+      }),
+      false,
+      "newTask",
     );
   },
 
