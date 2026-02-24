@@ -7,7 +7,11 @@ const Header = () => {
       <div className="relative flex items-center justify-between gap-3 min-[280px]:justify-end">
         {/* Icon Wrapper */}
         <div className="min-[280px]:absolute inset-0 flex items-center justify-start z-10 md:justify-center">
-          <a href="#" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/allangdasilva/react-kanban-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <GitHubIcon />
           </a>
         </div>
