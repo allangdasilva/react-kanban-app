@@ -1,6 +1,6 @@
-# 🌤️ Weather App
+# 📋 Kanban App
 
-> Aplicação desenvolvida com o objetivo de demonstrar minhas habilidades como **Desenvolvedor Front-end**, com foco em **React moderno**, **zustand** e **UI/UX**.
+> Aplicação desenvolvida com o objetivo de demonstrar minhas habilidades como **Desenvolvedor Front-end**, com foco em **React moderno**, **Zustand** e **UI/UX**.
 
 🔗 **Demo:** [kanban-app]()
 
