@@ -95,6 +95,6 @@
     @apply bg-background-500;
   }
   body {
-    @apply max-w-360 px-4;
+    @apply m-auto max-w-360 px-4;
   }
 }
